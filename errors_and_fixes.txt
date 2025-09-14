@@ -1,0 +1,29 @@
+ERRORS AND FIXES LOG
+==================
+
+1. Deepseek API 400 Bad Request Error
+   Problem: presence_penalty sent as string '2' instead of number
+   Fix: Changed presence_penalty: '2' to presence_penalty: 2
+   Location: useDeepseekAPI.ts:37
+
+2. React Draggable findDOMNode Error
+   Problem: react-draggable using deprecated ReactDOM.findDOMNode (removed in React 18)
+   Fix Options:
+   - Update react-draggable to latest version: npm install react-draggable@latest
+   - Use nodeRef prop with useRef hook
+   - Consider @dnd-kit/core as modern alternative
+   Location: TestNode.tsx:5
+
+3. Adding Arguments to Event Handler Functions
+   Problem: Event handlers have implicit event argument, hard to add custom arguments
+   Fix: Wrap in arrow function to pass additional arguments
+   Solution: <form onSubmit={(e) => handleSubmit(e, "customArg")}>
+   Location: App.tsx HandleSubmit function
+
+4. React Component Props Type Error
+   Problem: Component parameters not destructured as props object
+   Error: Property 'HandleSubmit' does not exist on type 'IntrinsicAttributes'
+   Fix: Change function parameters to destructured props object
+   Before: const Component = (prop1: type,          prop2: type) => {}
+   After: const Component = ({prop1, prop2}: {prop1: type, prop2: type}) => {}
+   Location: Searchbar.tsx component definition
